@@ -122,7 +122,7 @@ dependencies = [
 
 [[package]]
 name = "core"
-version = "0.1.0"
+version = "0.0.1"
 dependencies = [
  "anyhow",
  "convert_case",
@@ -132,7 +132,7 @@ dependencies = [
 
 [[package]]
 name = "flutter-iconfont-generate"
-version = "0.1.0"
+version = "0.0.1"
 dependencies = [
  "anyhow",
  "clap",
