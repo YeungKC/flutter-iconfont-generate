@@ -18,6 +18,8 @@ cargo build --release
 
 ## Usage
 
+```shell
+
 Usage: flutter-iconfont-generate [OPTIONS] <INPUT_FILE> <OUTPUT_FILE>
 
 Arguments:
@@ -30,6 +32,8 @@ Options:
   -o, --overwrite
   -h, --help                     Print help
   -V, --version                  Print version
+
+```
 
 ### Example
 
