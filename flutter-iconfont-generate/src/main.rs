@@ -1,9 +1,9 @@
-use std::fs;
+use std::{fs, io};
 
 use anyhow::{bail, Result};
 use clap::Parser;
 
-use converter::converter::convert;
+use core::core::convert;
 
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
@@ -38,7 +38,7 @@ fn main() -> Result<()> {
     if !args.overwrite && exists(&args.output_file) {
         println!("{} is exists, overwrite? [y/N]", args.output_file);
         let mut input = String::new();
-        std::io::stdin().read_line(&mut input)?;
+        io::stdin().read_line(&mut input)?;
         if input.trim().to_lowercase() != "y" {
             bail!("User cancel");
         }

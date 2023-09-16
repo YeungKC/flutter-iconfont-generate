@@ -1,5 +1,5 @@
 [package]
-name = "flutter-iconfont-generate"
+name = "core"
 version = "0.1.0"
 edition = "2021"
 
@@ -7,5 +7,6 @@ edition = "2021"
 
 [dependencies]
 anyhow = { version = "1.0.75", features = [] }
-clap = { version = "4.4.3", features = ["derive"] }
-converter = { path = "../converter" }
+convert_case = "0.6.0"
+lazy_static = "1.4.0"
+regex = { version = "1.9.5", features = [] }
