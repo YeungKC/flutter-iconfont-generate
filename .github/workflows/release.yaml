@@ -22,6 +22,14 @@ jobs:
         with:
           toolchain: stable
 
+      - name: Cache Rust Dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cargo
+            ~/.rustup
+          key: ${{ runner.os }}-rust-stable-${{ hashFiles('**/Cargo.lock') }}
+
       - name: Build
         uses: actions-rs/cargo@v1
         with:

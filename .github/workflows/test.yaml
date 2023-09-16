@@ -20,6 +20,14 @@ jobs:
         with:
           toolchain: ${{ matrix.rustc }}
 
+      - name: Cache Rust Dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cargo
+            ~/.rustup
+          key: ${{ runner.os }}-rust-${{ matrix.rustc }}-${{ hashFiles('**/Cargo.lock') }}
+
       - name: cargo fmt -- --check
         uses: actions-rs/cargo@v1
         with:
