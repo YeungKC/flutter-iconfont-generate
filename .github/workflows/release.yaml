@@ -9,9 +9,9 @@ jobs:
   release:
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu, windows, macos]
 
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}-latest
 
     steps:
       - name: Checkout
@@ -32,25 +32,9 @@ jobs:
         run: |
           tar -czf ${{ matrix.os }}.tar.gz -C ./target/release .
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish Release
+        uses: softprops/action-gh-release@v1
         with:
+          files: ./${{ matrix.os }}.tar.gz
           tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body: |
-            Automatic release for tag ${{ github.ref }}
-          draft: false
-          prerelease: false
-
-      - name: Upload Release Assets
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./${{ matrix.os }}.tar.gz
-          asset_name: ${{ matrix.os }}.tar.gz
-          asset_content_type: application/gzip
+          name: Release ${{ github.ref }}
