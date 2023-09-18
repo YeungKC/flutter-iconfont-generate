@@ -54,11 +54,10 @@ abstract final class {} {{
         )
         .as_str(),
     );
-    if package.is_some() {
-        content.push_str(
-            format!("  static const String _kPackage = '{}';", package.unwrap()).as_str(),
-        );
-    }
+
+    if let Some(package) = package {
+        content.push_str(format!("  static const String _kPackage = '{}';", package).as_str());
+    };
 
     content.push_str("\n");
 
